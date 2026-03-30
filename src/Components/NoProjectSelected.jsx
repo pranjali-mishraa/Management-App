@@ -1,6 +1,6 @@
 import noProject from '../assets/no-projects.png';
 import Button from './Button.jsx';
-export default function NoProjectSelected(){
+export default function NoProjectSelected({onStartAddProject}){
     return <div className='mt-24 text-center w-2/3'>
         <img src={noProject} alt='empty task list'
         className='w-16 h-16 mx-auto object-contain'/>
@@ -8,7 +8,7 @@ export default function NoProjectSelected(){
         <p className='text-stone-400 mb-4'>Select a project or start with new one </p>
 
         <p>
-           <Button>Create Project</Button>
+           <Button onClick = {onStartAddProject} >Create Project</Button>
         </p>
     </div>
 }
