@@ -5,13 +5,13 @@ import { useState } from "react";
 
 function App() {
 
-  const [projectState , seyProjectState] = useState({
+  const [projectState , setProjectState] = useState({
     selectedProjectId:undefined,
     projects:[]
   });
 
   function handleStartAddProject(){
-    seyProjectState(prevState=>{
+    setProjectState(prevState=>{
       return {
         ...prevState,
         selectedProjectId:null,
@@ -19,10 +19,25 @@ function App() {
     })
   }
 
+  function handleAddProject(projectData){
+     setProjectState(prevState=>{
+      const newProject ={
+          ...projectData,
+          id:Math.random()
+        };
+
+        return{
+          ...prevState,
+          selectedProjectId:undefined,
+          projects:[...prevState.projects,newProject]
+        };
+      });
+    }
+
   let content;
 
   if(projectState.selectedProjectId===null){
-    content = <NewProject/>;
+    content = <NewProject onAdd={handleAddProject}/>;
   }else if (projectState.selectedProjectId===undefined){
     content = <NoProjectSelected  onStartAddProject={handleStartAddProject}/>
   }
@@ -32,7 +47,9 @@ function App() {
 
      
 
-      <ProjectSideBar onStartAddProject={handleStartAddProject} />
+      <ProjectSideBar onStartAddProject={handleStartAddProject} 
+      projects = {projectState.projects}
+      />
       {content}
     </main>
   );
