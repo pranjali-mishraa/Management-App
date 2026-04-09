@@ -3,7 +3,7 @@ import Input from "./Input";
 import Modal from "./Modal";
 
 
-export default function NewProject({onAdd}) {
+export default function NewProject({onAdd , onCancle}) {
 
     const title = useRef();
     const description = useRef();
@@ -35,14 +35,16 @@ export default function NewProject({onAdd}) {
 
     <>
     <Modal ref={modal} buttonCaption="Close">
-      <h2>Invalid Input</h2>
-      <p>Please enter valid value.</p>
+      <h2 className="font-bold text-stone-900 text-xl my-4">Invalid Input</h2>
+      <p className="text-stone-900 mb-4">Please enter valid value.</p>
     </Modal>
     <div className="w-[35rem] mt-16 p-6 bg-stone-900 text-stone-50 rounded-xl">
       
  
       <menu className="flex items-center justify-end gap-4 my-4">
-        <button className="px-4 py-2 text-stone-400 hover:text-stone-100">
+        <button className="px-4 py-2 text-stone-400 hover:text-stone-100"
+        onClick={onCancle}
+        >
           Cancel
         </button>
         <button
