@@ -1,4 +1,6 @@
-export default function SelectedProject({project}){
+import Tasks from "./Tasks.jsx";
+
+export default function SelectedProject({project ,onDelete,onAddTask,onDeleteTasks,tasks}){
  
     const formattedData = new Date(project.dueDate).toLocaleDateString('en-US',{
         year: "numeric",
@@ -14,14 +16,14 @@ export default function SelectedProject({project}){
                 <div className="flex items-center justify-between">
                 <h2 className="text-3xl font-bold text-stone-600 mb-2"
                 >{project.title}</h2>
-                <button className="text-stone-600 hover:text-stone-950">
+                <button className="text-stone-600 hover:text-stone-950"  onClick={onDelete}>
                     Delete</button>
                 </div>
                 <p className="mb-4 text-stone-400">{formattedData}</p>
             <p className="text-stone-600 whitespace-pre-wrap">{project.description}</p>
 
             </header>
-            
+            <Tasks onAdd = {onAddTask} onDelete = {onDeleteTasks} tasks = {tasks}/>
         </div>
 
     )
